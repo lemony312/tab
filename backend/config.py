@@ -3,6 +3,7 @@ Configuration settings for the YouTube Tab Extractor.
 All magic numbers and configurable values are centralized here.
 """
 
+import os
 from pathlib import Path
 
 # Base paths
@@ -11,6 +12,13 @@ DATA_DIR = BASE_DIR / "data"
 DOWNLOADS_DIR = DATA_DIR / "downloads"
 OUTPUT_DIR = DATA_DIR / "output"
 COOKIES_FILE = BASE_DIR / "cookies.txt"
+
+# Support for YOUTUBE_COOKIES environment variable (for cloud deployments)
+# If set, write the cookies content to a file
+_youtube_cookies_env = os.environ.get("YOUTUBE_COOKIES")
+if _youtube_cookies_env:
+    COOKIES_FILE.write_text(_youtube_cookies_env)
+    print(f"Loaded YouTube cookies from environment variable ({len(_youtube_cookies_env)} chars)")
 
 # Ensure directories exist
 DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
