@@ -1,0 +1,11 @@
+fastapi>=0.104.0
+uvicorn>=0.24.0
+yt-dlp>=2024.1.0
+opencv-python>=4.8.0
+Pillow>=10.0.0
+fpdf2>=2.7.0
+python-multipart>=0.0.6
+
+# Development/Testing
+pytest>=7.0.0
+httpx>=0.25.0  # Required for FastAPI TestClient

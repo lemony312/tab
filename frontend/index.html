@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Tab Extractor</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>YouTube Tab Extractor</h1>
+            <p class="subtitle">Extract guitar tablature from YouTube videos</p>
+        </header>
+
+        <main>
+            <form id="extract-form">
+                <div class="input-group">
+                    <label for="url-input">YouTube Video URL</label>
+                    <input 
+                        type="url" 
+                        id="url-input" 
+                        placeholder="https://www.youtube.com/watch?v=..."
+                        required
+                    >
+                </div>
+
+                <details class="options">
+                    <summary>Advanced Options</summary>
+                    <div class="options-content">
+                        <div class="input-group">
+                            <label for="detection-mode">Detection Mode</label>
+                            <select id="detection-mode">
+                                <option value="auto" selected>Auto-Detect</option>
+                                <option value="full_screen">Full Screen Tabs</option>
+                                <option value="embedded">Embedded Tabs</option>
+                                <option value="numbers">Number Detection</option>
+                            </select>
+                            <small>
+                                <strong>Auto:</strong> Automatically detect tab layout<br>
+                                <strong>Full Screen:</strong> Tabs occupy entire screen (changes every few seconds)<br>
+                                <strong>Embedded:</strong> Tabs in portion of screen (scrolling tabs)<br>
+                                <strong>Numbers:</strong> Detect by finding fret numbers on lines
+                            </small>
+                        </div>
+                        <div class="input-group checkbox-group">
+                            <label>
+                                <input type="checkbox" id="tab-aware" checked>
+                                Tab-Aware Mode (Recommended)
+                            </label>
+                            <small>Ignores background video and moving highlights. Only detects when actual tab content changes.</small>
+                        </div>
+                        <div class="input-group">
+                            <label for="threshold">Scene Change Sensitivity</label>
+                            <input 
+                                type="range" 
+                                id="threshold" 
+                                min="0.1" 
+                                max="0.9" 
+                                step="0.1" 
+                                value="0.3"
+                            >
+                            <span id="threshold-value">0.3</span>
+                            <small>Lower = more frames captured</small>
+                        </div>
+                        <div class="input-group">
+                            <label for="interval">Minimum Interval (seconds)</label>
+                            <input 
+                                type="number" 
+                                id="interval" 
+                                min="0.5" 
+                                max="30" 
+                                step="0.5" 
+                                value="2"
+                            >
+                            <small>Minimum time between frame captures</small>
+                        </div>
+                        <div class="input-group">
+                            <label for="intro-skip">Intro Skip (seconds)</label>
+                            <input 
+                                type="number" 
+                                id="intro-skip" 
+                                min="0" 
+                                max="300" 
+                                step="5" 
+                                value="30"
+                            >
+                            <small>Wait this long before concluding "no tabs found" (for videos with intros)</small>
+                        </div>
+                    </div>
+                </details>
+
+                <button type="submit" id="submit-btn">
+                    <span class="btn-text">Extract Tabs</span>
+                    <span class="btn-loading" hidden>Processing...</span>
+                </button>
+            </form>
+
+            <div id="status-section" class="status-section" hidden>
+                <div class="status-header">
+                    <h2 id="video-title">Processing...</h2>
+                    <span id="status-badge" class="badge">pending</span>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <span class="progress-text" id="progress-text">0%</span>
+                </div>
+
+                <p id="status-message" class="status-message">Starting...</p>
+
+                <div class="stats" id="stats" hidden>
+                    <div class="stat">
+                        <span class="stat-value" id="frames-extracted">0</span>
+                        <span class="stat-label">Frames Extracted</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="tabs-detected">0</span>
+                        <span class="stat-label">Tabs Detected</span>
+                    </div>
+                </div>
+
+                <div id="download-section" class="download-section" hidden>
+                    <a href="#" id="download-btn" class="download-btn">
+                        Download PDF
+                    </a>
+                </div>
+
+                <div id="error-section" class="error-section" hidden>
+                    <p id="error-message"></p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made for guitar players</p>
+        </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

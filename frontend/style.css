@@ -1,0 +1,345 @@
+/* YouTube Tab Extractor - Styles */
+
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --success: #16a34a;
+    --error: #dc2626;
+    --warning: #ca8a04;
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--text-muted);
+}
+
+/* Form */
+form {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.input-group input[type="url"],
+.input-group input[type="number"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.input-group small {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+/* Checkbox group */
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--primary);
+}
+
+.checkbox-group small {
+    margin-left: 1.6rem;
+}
+
+/* Range input */
+.input-group input[type="range"] {
+    width: calc(100% - 3rem);
+    vertical-align: middle;
+}
+
+#threshold-value {
+    display: inline-block;
+    width: 2.5rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Options */
+.options {
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.options summary {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.options summary:hover {
+    color: var(--text);
+}
+
+.options-content {
+    padding: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+/* Button */
+button[type="submit"] {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+    background: var(--primary-hover);
+}
+
+button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-loading::before {
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid transparent;
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Status Section */
+.status-section {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.status-header h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 70%;
+}
+
+.badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.badge.pending { background: #fef3c7; color: var(--warning); }
+.badge.downloading { background: #dbeafe; color: var(--primary); }
+.badge.processing { background: #dbeafe; color: var(--primary); }
+.badge.detecting { background: #dbeafe; color: var(--primary); }
+.badge.generating_pdf { background: #dbeafe; color: var(--primary); }
+.badge.completed { background: #dcfce7; color: var(--success); }
+.badge.failed { background: #fee2e2; color: var(--error); }
+
+/* Progress Bar */
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    min-width: 3rem;
+    text-align: right;
+}
+
+.status-message {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+/* Stats */
+.stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: var(--bg);
+    border-radius: var(--radius);
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Download Button */
+.download-section {
+    margin-top: 1rem;
+}
+
+.download-btn {
+    display: block;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: var(--success);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.download-btn:hover {
+    background: #15803d;
+}
+
+/* Error */
+.error-section {
+    padding: 1rem;
+    background: #fee2e2;
+    border-radius: var(--radius);
+    color: var(--error);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

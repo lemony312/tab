@@ -1,0 +1,26 @@
+# Virtual environment
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Data directories (will be created fresh)
+data/downloads/*
+data/output/*
+
+# Development files
+*.md
+.git/
+.gitignore
+tests/
+
+# IDE
+.vscode/
+.idea/
+
+# Cookies (sensitive)
+cookies.txt
