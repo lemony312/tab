@@ -1,11 +1,16 @@
-# Use Python slim image
-FROM python:3.11-slim
+# Use Python bookworm image (more complete than slim)
+FROM python:3.11-bookworm
 
 # Install system dependencies for OpenCV and ffmpeg
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
     ffmpeg \
-    libgl1-mesa-glx \
+    libgl1 \
     libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender1 \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
